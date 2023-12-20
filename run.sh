@@ -21,19 +21,12 @@
 
 if [ $# -lt 1 ]
 then
-    echo "Usage: $0 [--rm] <docker image> [<dir with workspace> ...]"
+    echo "Usage: $0 <docker image> [--rm] [--nvidia]"
     exit 1
 fi
 
-# Default to NVIDIA
-# Note that on all non-Debian/non-Ubuntu platforms, dpkg won't exist so they'll always choose
-# --runtime=nvidia.  If you are running one of those platforms and --runtime=nvidia doesn't work
-# for you, change the else statement.
-if [[ -x "$(command -v dpkg)" ]] && dpkg --compare-versions "$(docker version --format '{{.Server.Version}}')" gt "19.3"; then
-  DOCKER_OPTS="--gpus=all"
-else
-  DOCKER_OPTS="--runtime=nvidia"
-fi
+# Default to no NVIDIA
+DOCKER_OPTS=""
 
 # Parse and remove args
 PARAMS=""
@@ -44,8 +37,15 @@ while (( "$#" )); do
       REMOVE_CONTAINER="--rm"
       shift
       ;;
-    --no-nvidia)
-        DOCKER_OPTS=""
+    --nvidia)
+      # Note that on all non-Debian/non-Ubuntu platforms, dpkg won't exist so they'll always choose
+      # --runtime=nvidia.  If you are running one of those platforms and --runtime=nvidia doesn't work
+      # for you, change the else statement.
+      if [[ -x "$(command -v dpkg)" ]] && dpkg --compare-versions "$(docker version --format '{{.Server.Version}}')" gt "19.3"; then
+        DOCKER_OPTS="--gpus=all"
+      else
+        DOCKER_OPTS="--runtime=nvidia"
+      fi
       shift
       ;;
     -*|--*=) # unsupported flags

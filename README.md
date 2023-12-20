@@ -26,12 +26,12 @@ docker build -t pointcloud_conversion_tools Docker
 To run the Docker container, utilize the provided run script with the following parameters:
 
 ```bash
-./run.sh pointcloud_conversion_tools [--rm] [--no-nvidia]
+./run.sh pointcloud_conversion_tools [--rm] [--nvidia]
 ```
 
 - `<image-name>`: The name you assigned to the Docker image during the build process.
 - `--rm`: Automatically remove the container when it exits.
-- `--no-nvidia`: Run the container without NVIDIA GPU support.
+- `--nvidia`: Run the container with NVIDIA GPU support.
 
 After running the container, a folder structure will be created within the repository directory. This folder structure will be used to store the point cloud data in the different formats. That folder will be linked to the `/root/pointcloud-files` directory within the container.
 

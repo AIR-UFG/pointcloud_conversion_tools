@@ -14,13 +14,12 @@ RUN apt update && apt install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN pip3 install numpy matplotlib tk
 
-WORKDIR /root/tools
 # Clone pointcloud_to_image repository
-RUN git clone https://github.com/alunos-pfc/pointcloud_to_image.git
+RUN git clone https://github.com/alunos-pfc/pointcloud_to_image.git /root/tools/pointcloud_to_image
 
 # Clone Tools_RosBag2KITTI repository and delete unnecessary files
-RUN git clone https://github.com/leofansq/Tools_RosBag2KITTI.git && \
-    mv Tools_RosBag2KITTI/pcd2bin /root/tools && \
+RUN git clone https://github.com/leofansq/Tools_RosBag2KITTI.git /root/tools/Tools_RosBag2KITTI && \
+    mv /root/tools/Tools_RosBag2KITTI/pcd2bin /root/tools && \
     rm -r /root/tools/Tools_RosBag2KITTI && \
     rm -r /root/tools/pcd2bin/pcd /root/tools/pcd2bin/bin
 
