@@ -94,6 +94,7 @@ if [ ! -d "${POINTCLOUD_DIR}" ]; then
     mkdir -p "${POINTCLOUD_DIR}/png-files/depth"
     mkdir -p "${POINTCLOUD_DIR}/png-files/height"
     mkdir -p "${POINTCLOUD_DIR}/png-files/reflectance"
+    mkdir -p "${POINTCLOUD_DIR}/video-files"
 fi
 
 # Relax X server permissions so that local X connections work; this is necessary

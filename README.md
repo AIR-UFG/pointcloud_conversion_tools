@@ -40,10 +40,12 @@ pointcloud-files
 ├── bag-files
 ├── bin-files
 ├── pcd-files
+├── video-files
 └── png-files
     ├── depth
     ├── height
     └── reflectance
+
 </pre>
 
 ## Pointcloud Conversion
@@ -112,5 +114,31 @@ Parameters
 - `output_folder`: Path to the output folder for saving images.
     - /root/pointcloud-files/png-files/`<val>`
 - `--val`: Value to visualize (`depth`, `height`, or `reflectance`).
+
+For more information, visit the [original repository](https://github.com/alunos-pfc/pointcloud_to_image)
+
+### PNG images to MP4 video
+
+The PNG images can be converted to MP4 video using pointcloud_to_image repository.
+
+The script is in the `pointcloud_to_image` directory. Navigate to it by running the following command:
+
+```bash
+cd /root/tools/pointcloud_to_image
+```
+
+And run the following command to convert the PNG files to MP4:
+
+```bash
+python create_video.py /root/pointcloud-files/png-files/reflectance --output_file /root/pointcloud-files/video-files/reflectance.mp4 --fps 24
+```
+
+Parameters
+
+- `image_folder`: Path to the folder containing PNG images.
+    - /root/pointcloud-files/png-files/`<val>`
+- `--output_file` or `-o`: Output file name (default: output.mp4).
+    - /root/pointcloud-files/video-files/`<val>`.mp4
+- `--fps`: Frames per second (default: 12).
 
 For more information, visit the [original repository](https://github.com/alunos-pfc/pointcloud_to_image)

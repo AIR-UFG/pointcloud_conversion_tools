@@ -12,7 +12,7 @@ RUN apt update && apt install -y \
     python3-pcl \
     pcl-tools \
     && rm -rf /var/lib/apt/lists/*
-RUN pip3 install numpy matplotlib tk
+RUN pip3 install numpy matplotlib tk opencv-python
 
 # Clone pointcloud_to_image repository
 RUN git clone https://github.com/alunos-pfc/pointcloud_to_image.git /root/tools/pointcloud_to_image
