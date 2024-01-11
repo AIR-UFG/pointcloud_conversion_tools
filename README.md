@@ -44,8 +44,8 @@ pointcloud-files
 └── png-files
     ├── depth
     ├── height
-    └── reflectance
-
+    ├── reflectance
+    └── birds_eye
 </pre>
 
 ## Pointcloud Conversion
@@ -113,7 +113,7 @@ Parameters
     - /root/pointcloud-files/pcd-files or /root/pointcloud-files/bin-files
 - `output_folder`: Path to the output folder for saving images.
     - /root/pointcloud-files/png-files/`<val>`
-- `--val`: Value to visualize (`depth`, `height`, or `reflectance`).
+- `--val`: Value to visualize (`depth`, `height`, `reflectance` or `birds_eye`).
 
 For more information, visit the [original repository](https://github.com/alunos-pfc/pointcloud_to_image)
 

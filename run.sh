@@ -94,6 +94,7 @@ if [ ! -d "${POINTCLOUD_DIR}" ]; then
     mkdir -p "${POINTCLOUD_DIR}/png-files/depth"
     mkdir -p "${POINTCLOUD_DIR}/png-files/height"
     mkdir -p "${POINTCLOUD_DIR}/png-files/reflectance"
+    mkdir -p "${POINTCLOUD_DIR}/png-files/birds_eye"
     mkdir -p "${POINTCLOUD_DIR}/video-files"
 fi
 
