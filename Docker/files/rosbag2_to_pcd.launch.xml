@@ -1,0 +1,11 @@
+<launch>
+  <arg name="bag_path"/>
+  <arg name="topic_name" default="/velodyne_points"/>
+  <arg name="output_folder" default="/root/pointcloud-files/pcd-files/"/>
+
+  <node pkg="rosbag2_to_pcd" exec="rosbag2_to_pcd_node" name="rosbag2_to_pcd" output="screen">
+    <param name="path_bag" value="$(var bag_path)"/>
+    <param name="topic_cloud" value="$(var topic_name)"/>
+    <param name="output_folder" value="$(var output_folder)"/>
+  </node>
+</launch>
