@@ -7,7 +7,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y \
     git \
     nano \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
+RUN pip install tqdm opencv-python
 
 # Clone rosbag2_to_pcd repository
 RUN git clone https://github.com/xmfcx/rosbag2_to_pcd.git /root/rosbag2pcd_ws/src/rosbag2_to_pcd
@@ -44,6 +47,16 @@ RUN sed -i 's|/home/cecilia/leo_projects/bishe2019/pcd2bin/bin/|/root/pointcloud
 # Build pcd2bin
 WORKDIR /root/pcd2bin/CMakeFile
 RUN cmake .. && make
+
+# Clone Cloud2DImageConverter repository
+RUN git clone https://github.com/alunos-pfc/Cloud2DImageConverter.git /root/Cloud2DImageConverter
+WORKDIR /root/Cloud2DImageConverter
+RUN pip3 install -e '.[dev]'
+# Copy the bin_to_png.py script to the container
+COPY files/bin_to_png.py /root/Cloud2DImageConverter/bin_to_png.py 
+
+RUN mkdir -p /root/video_generator
+COPY files/create_video.py /root/video_generator/create_video.py
 
 # Add ROS to path
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc && \

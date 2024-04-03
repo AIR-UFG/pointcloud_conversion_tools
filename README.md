@@ -1,6 +1,6 @@
 # Pointcloud Conversion Tools
 
-This Docker image provides a set of tools for converting point cloud data between different formats. The tools included in this image facilitate the conversion from ROS bag files to PCD (Point Cloud Data) and from PCD to BIN. The image is built on top of the OSRF ROS Humble Desktop Full image.
+This Docker image provides a set of tools for converting point cloud data between different formats. The tools included in this image facilitate the conversion from ROS bag files to PCD (Point Cloud Data), from PCD to BIN and from BIN to PNG. The image is built on top of the OSRF ROS Humble Desktop Full image.
 
 ## Setup
 
@@ -43,9 +43,7 @@ pointcloud-files
 ├── video-files
 └── png-files
     ├── depth
-    ├── height
-    ├── reflectance
-    └── birds_eye
+    └── reflectance
 </pre>
 
 ## Pointcloud Conversion
@@ -81,3 +79,54 @@ cd /root/pcd2bin/CMakeFile
 The BIN files will be saved in the `/root/pointcloud-files/bin-files/` directory, which can be accessed both from within and outside the container.
 
 For more information, visit the [original repository](https://github.com/leofansq/Tools_RosBag2KITTI)
+
+### BIN to PNG
+
+This Docker image includes tools for convertind BIN files to PNG images.
+
+The script is in the `Cloud2DImageConverter` directory. Navigate to it by running the following command:
+
+```bash
+cd /root/Cloud2DImageConverter
+```
+
+And run the following command to convert the PCD files to PNG:
+
+```bash
+python3 bin_to_png.py --data-path <input-folder> --results-path <output-folder>
+```
+
+Additional Parameters:
+
+- `--batch-size`: Amount of data that will be loaded into memory in each iteration. Default is `500`.
+- `--fov-up`: Field of view up parameter for projection. Default is `15.0`.
+- `--fov-down`: Field of view down parameter for projection. Default is `-15.0`.
+- `--width`: Width parameter for projection. Default is `512`.
+- `--height`: Height parameter for projection. Default is `16`.
+- `--is-label`: Boolean value indicating whether the data contains the label folder.
+
+For more information, visit the [original repository](https://github.com/alunos-pfc/Cloud2DImageConverter)
+
+### PNG images to MP4 video
+
+The PNG images can be converted to MP4 video using pointcloud_to_image repository.
+
+The script is in the `video_generator` directory. Navigate to it by running the following command:
+
+```bash
+cd /root/video_generator
+```
+
+And run the following command to convert the PNG files to MP4:
+
+```bash
+python3 create_video.py /root/pointcloud-files/png-files/reflectance --output_file /root/pointcloud-files/video-files/reflectance.mp4 --fps 24
+```
+
+Parameters
+
+- `image_folder`: Path to the folder containing PNG images.
+    - /root/pointcloud-files/png-files/`<val>`
+- `--output_file` or `-o`: Output file name (default: output.mp4).
+    - /root/pointcloud-files/video-files/`<val>`.mp4
+- `--fps`: Frames per second (default: 12).
