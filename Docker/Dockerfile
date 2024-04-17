@@ -49,7 +49,7 @@ WORKDIR /root/pcd2bin/CMakeFile
 RUN cmake .. && make
 
 # Clone Cloud2DImageConverter repository
-RUN git clone https://github.com/alunos-pfc/Cloud2DImageConverter.git /root/Cloud2DImageConverter
+RUN git clone https://github.com/AIR-UFG/Cloud2DImageConverter.git /root/Cloud2DImageConverter
 WORKDIR /root/Cloud2DImageConverter
 RUN pip3 install -e '.[dev]'
 # Copy the bin_to_png.py script to the container

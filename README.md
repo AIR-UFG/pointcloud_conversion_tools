@@ -9,7 +9,7 @@ This Docker image provides a set of tools for converting point cloud data betwee
 Clone this repository and navigate to it.
 
 ```bash	
-git clone https://github.com/alunos-pfc/pointcloud_conversion_tools.git
+git clone https://github.com/AIR-UFG/pointcloud_conversion_tools.git
 cd pointcloud_conversion_tools
 ```
 
@@ -105,7 +105,7 @@ Additional Parameters:
 - `--height`: Height parameter for projection. Default is `16`.
 - `--is-label`: Boolean value indicating whether the data contains the label folder.
 
-For more information, visit the [original repository](https://github.com/alunos-pfc/Cloud2DImageConverter)
+For more information, visit the [original repository](https://github.com/AIR-UFG/Cloud2DImageConverter)
 
 ### PNG images to MP4 video
 
