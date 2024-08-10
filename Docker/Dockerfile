@@ -58,6 +58,10 @@ COPY files/bin_to_png.py /root/Cloud2DImageConverter/bin_to_png.py
 RUN mkdir -p /root/video_generator
 COPY files/create_video.py /root/video_generator/create_video.py
 
+# Copy the extract_lidar_timestamps.py script to the container
+RUN mkdir -p /root/extract_lidar_timestamps
+COPY files/extract_lidar_timestamps.py /root/extract_lidar_timestamps/extract_lidar_timestamps.py
+
 # Add ROS to path
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc && \
     echo "source /root/rosbag2pcd_ws/install/setup.bash" >> /root/.bashrc

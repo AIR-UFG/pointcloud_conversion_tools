@@ -130,3 +130,35 @@ Parameters
 - `--output_file` or `-o`: Output file name (default: output.mp4).
     - /root/pointcloud-files/video-files/`<val>`.mp4
 - `--fps`: Frames per second (default: 12).
+
+## Extracting LiDAR Timestamps
+
+The `extract_lidar_timestamps.py` script can be used to extract timestamps from a ROS2 bag file containing LiDAR data and save them in a `times.txt` file, which can be used for further processing or synchronization tasks.
+
+### Usage
+
+The script accepts the following parameters:
+
+- `bag_file`: The path to your ROS2 bag file (required).
+- `--topic_name`: The name of the LiDAR topic in the bag file (default: `/velodyne_points`).
+- `--output_file`: The name of the output file where the timestamps will be saved (default: `times.txt`).
+
+### Running the Script
+
+To run the script, use the following command:
+
+```bash
+python3 extract_lidar_timestamps.py <bag_file> [--topic_name <topic_name>] [--output_file <output_file>]
+```
+
+#### Example
+
+To extract timestamps from a ROS2 bag file named `example.bag`, using the default LiDAR topic `/velodyne_points`, and save them to `times.txt`:
+
+```bash
+python3 extract_lidar_timestamps.py example.bag
+```
+
+### Output
+
+The script will generate a `times.txt` file containing the timestamps of each LiDAR scan in the ROS2 bag file, formatted in exponential notation.
