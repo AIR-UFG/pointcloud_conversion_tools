@@ -50,8 +50,8 @@ pointcloud-files
 
 ### ROS Bag to PCD
 
-To convert ROS bag files to PCD, we will use the rosbag2_to_pcd package.
-We used the code from [rosbag2_to_pcd](https://github.com/xmfcx/rosbag2_to_pcd) by [xmfcx](https://github.com/xmfcx/).
+To convert ROS bag files to PCD, we will use the ros2bag_tools package.
+We used the code from [ros2bag_tools](https://github.com/AIT-Assistive-Autonomous-Systems/ros2bag_tools) by [AIT-Assistive-Autonomous-Systems](https://github.com/AIT-Assistive-Autonomous-Systems/).
 
 Run the following command to convert the ROS bag file to PCD:
 
@@ -59,11 +59,15 @@ Run the following command to convert the ROS bag file to PCD:
 ros2 launch rosbag2_to_pcd rosbag2_to_pcd.launch.xml bag_path:=<bag-path> topic_name:=/topic_name output_folder:=<output-folder>
 ```
 
+```bash
+ros2 bag export --in <bag-path> -t /topic_name pcd
+```
+
 - `<bag-path>`: The path to the ROS2 bag file (put it in the `/root/pointcloud-files/bag-files` directory to access it both from within and outside the container).
 - `/topic_name`: The name of the topic that contains the point cloud data. Default: `/velodyne_points`.
-- `<output-folder>`: The path to the output folder. Default value: `/root/pointcloud-files/pcd-files/`, directory that can be accessed both from within and outside the container.
+The PCD files will be saved in the directory which you are running the command from.
 
-For more information, visit the [original repository](https://github.com/xmfcx/rosbag2_to_pcd)
+For more information, visit the [original repository]((https://github.com/AIT-Assistive-Autonomous-Systems/ros2bag_tools)
 
 ### PCD to BIN
 
